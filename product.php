@@ -1,30 +1,24 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $password = $password . "system";
+$con = new mysqli("localhost", "batch1", "batch1", "db_webdev", 3306);
 
-    $con = mysqli_connect("localhost", "batch1", "batch1", "db_webdev", "3306");
-
-    $sql = "SELECT * FROM `tbl_accounts` WHERE `email` = '$email'";
-    
-    $result = $con->query($sql);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-
-        //PASSWORD VERIFY
-        if (password_verify($password, $row["password"])) {
-            if ($row["admin_privileges"] == "1") {
-                header("Location: admin.php");
-            } elseif ($row["admin_privileges"] == "0") {
-                header("Location: shop.php");
-            }
-        } else {
-            echo "Login Error";
-        }
-    }
+// Validate and sanitize input
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    die("Invalid product ID.");
 }
+
+$product_id = intval($_GET['id']);
+
+$result = $con->prepare("SELECT productName, productDescription, price, quantity, productImage FROM tbl_products WHERE id = ?");
+$result->bind_param("i", $product_id);
+$result->execute();
+$result->store_result();
+
+if ($result->num_rows === 0) {
+    die("Product not found.");
+}
+
+$result->bind_result($name, $description, $price, $quantity, $image);
+$result->fetch();
 ?>
 
 <!DOCTYPE html>
@@ -35,17 +29,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="stylesheet/sign.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheet/shop.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+
 </head>
 
-<body class="bg-dark text-white">
+<body class="bg-dark text-light">
     <section id="header">
         <a href=""><img src="assets/images/logos.png" class="logo" alt=""> Website</a>
         <div>
             <ul id="navbar">
                 <li><a href="index.html">Home</a></li>
-                <li><a class="active" href="shop.php">Shop</a></li>
+                <li><a href="shop.php">Shop</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="Login.php">Login</a></li>
                 <li id="bag"><a href="#"><i class="fa-solid fa-bag-shopping"></i></a></li>
@@ -58,37 +54,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </section>
 
-    <div class="container" id="signIn">
-        <h1 class="form-title">Sign In</h1>
-        <form method="post">
-          <div class="input-group">
-              <i class="fas fa-envelope"></i>
-              <input type="email" name="email" id="email" placeholder="Email" required>
-              <label for="email">Email</label>
-          </div>
-          <div class="input-group">
-              <i class="fas fa-lock"></i>
-              <input type="password" name="password" id="password" placeholder="Password" required>
-              <label for="password">Password</label>
-          </div>
-          <p class="recover">
-            <a href="#">Recover Password</a>
-          </p>
-         <input type="submit" class="btns" value="Sign In" name="signIn">
-        </form>
-        <p class="or">
-          OR
-        </p>
-        <div class="icons">
-          <i class="fab fa-google"></i>
-          <i class="fab fa-facebook"></i>
+    <section id="details" class="section-p1">
+        <div class="prodImg">
+            <img src="<?php echo htmlspecialchars($image); ?>" width="100%" id="mainImg" alt="Product Image">
         </div>
-        <div class="links">
-          <p>Don't have account yet?</p>
-          <a href="Register.php"><button id="signUpButton">Sign Up</button></a>
+        <div class="prodDetails">
+            <h6>Product Details</h6>
+            <h4><?php echo htmlspecialchars($name); ?></h4>
+            <h2>₱<?php echo number_format($price, 2); ?></h2>
+            <input type="number" value="1" min="1" max="<?php echo $quantity; ?>">
+            <button class="btns">Add to Cart</button>
+            <h4>Product Description</h4>
+            <span><?php echo nl2br(htmlspecialchars($description)); ?></span>
         </div>
-      </div>
-    </div>
+    </section>
+    <a href="shop.php"><center><button class="btns" id="btns1" style="margin-bottom: 30px;">Go Back</button></center></a>
+
 
     <footer class="section-p1">
         <div class="item">
@@ -123,9 +104,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>©2025, Miku - Web Development NCIII Project</p>
     </footer>
 
-    <script src="script/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 
+    <script src="script/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
