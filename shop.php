@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $con = mysqli_connect("localhost", "batch1", "batch1", "db_webdev", "3306");
 
@@ -14,7 +15,7 @@ $result = $con->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="stylesheet/shop.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -23,137 +24,36 @@ $result = $con->query($sql);
 </head>
 
 <body class="bg-dark text-light">
-    <section id="header">
-        <a href=""><img src="assets/images/logos.png" class="logo" alt=""> Website</a>
-        <div>
-            <ul id="navbar">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.php">Shop</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="Login.php">Login</a></li>
-                <li id="bag"><a href="#"><i class="fa-solid fa-bag-shopping"></i></a></li>
-                <a href="" id="close"><i class="fa-solid fa-xmark"></i></a>
-            </ul>
-        </div>
-        <div id="mobile">
-            <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
-            <i id="bar" class="fa-solid fa-bars"></i>
-        </div>
-    </section>
+    <?php include("view/header.html"); ?>
 
     <section id="hero">
-        <div class="container py-6">
-            <div class="row flex-lg-row-reverse align-items-center g-5">
-                <div class="col-10 mx-auto col-sm-8 col-lg-6">
-                    <div id="carouselAutoplay" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="https://placehold.co/600x400/EEE/31343C" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://placehold.co/600x400/EEE/31343C" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://placehold.co/600x400/EEE/31343C" class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselAutoplay"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselAutoplay"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="lc-block mb-3">
-                        <div editable="rich">
-                            <h2 class="fw-bold display-5">Responsive left-aligned hero with image</h2>
-                        </div>
-                    </div>
-
-                    <div class="lc-block mb-3">
-                        <div editable="rich">
-                            <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap,
-                                the
-                                world’s most popular front-end open source toolkit, featuring Sass variables and mixins,
-                                responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="lc-block d-grid gap-2 d-md-flex justify-content-md-start"><a
-                            class="btn btn-primary px-4 me-md-2" href="#" role="button">Click me, I'm a button</a>
-                        <a class="btn btn-outline-secondary px-4" href="#" role="button">Click me, I'm a button</a>
-                    </div>
-
-                </div>
-            </div>
+        <div id="hero-content">
+            <h1>Welcome to Our Shop</h1>
+            <p>Discover the best deals on our products!</p>
         </div>
     </section>
 
     <section id="product" class="margin-side">
-        <h2>Featured Deals!</h2>
         <div id="product-container">
             <?php
             while ($row = $result->fetch_assoc()) {
             ?>
                 <div class="product-item">
-                    <a href="product.php?id=<?= $row['id']; ?>">
+                    <a href="product.php?id=<?= $row['id']; ?>" id="product-link">
                         <img src="<?= $row['productImage'] ?>" alt="">
                         <h3><?= $row['productName'] ?></h3>
                         <p><?= $row['productDescription'] ?></p>
-                        <div class="star">
-                            <i class="fa fa-star"></i><i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i><i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
                         <h5>₱<?= $row['price'] ?></h5>
                     </a>
                     <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
                 </div>
-                    <?php
-                }
-                    ?>
+            <?php
+            }
+            ?>
         </div>
     </section>
 
-    <footer class="section-p1">
-        <div class="item">
-            <div class="col">
-                <h4>Contact</h4>
-                <p><strong>Address: </strong> 123 Street, Sample City, Country</p>
-                <p><strong>Phone: </strong> +63 987 654 3211</p>
-                <p><strong>Hours: </strong> 10:00 - 18:00, Mon - Sat</p>
-                <div class="socmed">
-                    <h4>Follow Us:</h4>
-                    <div class="icon">
-                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://x.com/"><i class="fab fa-x-twitter"></i></a>
-                        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-                        <a href="https://www.pinterest.com/"><i class="fab fa-pinterest-p"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col apps">
-                <h4>Install Our App</h4>
-                <p>From App Store or Google Play</p>
-                <div class="row-foot">
-                    <a href="https://www.apple.com/ph/app-store/"><img src="assets/images/pay/AppStore.png" alt=""></a>
-                    <a href="https://play.google.com/store/games?hl=en&pli=1"><img src="assets/images/pay/PlayStore.png"
-                            alt=""></a>
-                </div>
-                <p>Secured Payement Gateways</p>
-                <img src="assets/images/pay/pay.png" alt="">
-            </div>
-        </div>
-        <p>©2025, Miku - Web Development NCIII Project</p>
-    </footer>
+    <?php include("view/footer.html"); ?>
 
 
     <script src="script/index.js"></script>

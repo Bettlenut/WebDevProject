@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fName = $_POST["fName"];
     $lName = $_POST["lName"];
@@ -93,38 +95,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
                 <p id="number" class="invalid">A <b>number</b></p>
             </div>
-            <input type="submit" class="btns" value="Sign Up" name="signUp">
+            <input type="submit" class="btns" value="Add" name="signUp">
+            
         </form>
-        <p class="or">
-            OR
-        </p>
-        <div class="icons">
-            <i class="fab fa-google"></i>
-            <i class="fab fa-facebook"></i>
-        </div>
-        <div class="links">
-            <p>Already Have Account ?</p>
-            <a href="Login.php"><button id="signInButton">Sign In</button></a>
-        </div>
     </div>
 
     <?php include("./view/footer.html"); ?>
 
     <script>
-        var myInput = document.getElementById("password");
+        var input = document.getElementById("password");
 
-        myInput.onfocus = function() {
+        input.onfocus = function() {
             document.getElementById("message").style.display = "block";
         }
 
-        // When the user clicks outside of the password field, hide the message box
-        myInput.onblur = function() {
+        input.onblur = function() {
             document.getElementById("message").style.display = "none";
         }
-        myInput.onkeyup = function() {
+        input.onkeyup = function() {
             // Validate lowercase letters
             var lowerCaseLetters = /[a-z]/g;
-            if (myInput.value.match(lowerCaseLetters)) {
+            if (input.value.match(lowerCaseLetters)) {
                 letter.classList.remove("invalid");
                 letter.classList.add("valid");
             } else {
@@ -134,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Validate capital letters
             var upperCaseLetters = /[A-Z]/g;
-            if (myInput.value.match(upperCaseLetters)) {
+            if (input.value.match(upperCaseLetters)) {
                 capital.classList.remove("invalid");
                 capital.classList.add("valid");
             } else {
@@ -144,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Validate numbers
             var numbers = /[0-9]/g;
-            if (myInput.value.match(numbers)) {
+            if (input.value.match(numbers)) {
                 number.classList.remove("invalid");
                 number.classList.add("valid");
             } else {

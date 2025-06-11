@@ -16,50 +16,6 @@
     cursor: pointer;
 }
 
-#header {
-    background-color: rgb(30, 30, 30);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 80px;
-    box-shadow: 0 5px 15px rgba(241, 240, 240, 0.1);
-    z-index: 999;
-    position: sticky;
-    top: 0;
-    left: 0;
-
-    img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50px;
-        background-color: #464343;
-        cursor: pointer;
-    }
-
-    a {
-        text-decoration: none;
-        color: #bfb6f0;
-        font-size: 30px;
-        font-weight: 500;
-    }
-
-    #navbar {
-        li {
-            list-style: none;
-
-            a {
-                color: #adaaaa;
-                font-size: 20px;
-                transition: 0.3s ease;
-            }
-
-            a:hover {
-                color: #313131;
-            }
-        }
-    }
-}
-
 #hero {
     padding-top: 100px;
     padding-bottom: 100px;
@@ -69,6 +25,16 @@
     background-size: cover;
     background-position: center;
     box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.1);
+
+    #hero-content {
+        text-align: center;
+        padding: 20px;
+        color: #bfb6f0;
+        h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+    }
 
 }
 
@@ -117,6 +83,15 @@
             bottom: 38px;
             right: 30px;
         }
+
+        h3 {
+            color: #bfb6f0;
+        }
+
+        #product-link {
+            text-decoration: none;
+            color: inherit;
+        }
     }
 
     .product-item:hover {
@@ -135,134 +110,45 @@
     }
 }
 
-footer {
-    background-color: rgb(30, 30, 30);
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(241, 240, 240, 0.1);
-    z-index: 999;
-
-    .item {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-
-        i {
-            font-size: larger;
-            padding: 5px;
-            cursor: pointer;
-            color: #adaaaa;
-        }
-
-        p {
-            margin: 0%;
-        }
-
-        h4 {
-            margin-top: 20px;
-            color: rgb(120, 107, 236);
-        }
-    }
-
-    img {
-        border-radius: 20px;
-        box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-    }
-
-    p {
-        margin-top: 30px;
-    }
-}
-
-.prodImg {
-    width: 40%;
-    margin-right: 50px;
-}
-
 #details {
     display: flex;
+
+    .prodImg {
+        width: 40%;
+        margin-right: 50px;
+    }
 
     .prodDetails {
         width: 50%;
         padding-top: 30px;
-    }
 
-    h4 {
-        padding: 40px 0 20px 0;
-    }
+        h4 {
+            padding: 40px 0 20px 0;
+        }
 
-    input {
-        width: 50px;
-        height: 40px;
-        padding-left: 10px;
-        font-size: 15px;
-        margin-right: 10px;
-        border: none;
-        border-radius: 5px;
-    }
+        input {
+            width: 50px;
+            height: 40px;
+            padding-left: 10px;
+            font-size: 15px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+        }
 
-    input:focus {
-        outline: none;
-    }
+        input:focus {
+            outline: none;
+        }
 
-    span {
-        line-height: 25px;
-        color: rgb(195, 195, 195);
+        span {
+            padding-left: 10px;
+            line-height: 25px;
+            color: rgb(195, 195, 195);
+        }
     }
 }
 
 @media screen and (width <=744px) {
-    #mobile {
-
-        i {
-            font-size: 25px;
-            padding-left: 10px;
-            justify-content: center;
-        }
-    }
-
-    #navbar {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        position: fixed;
-        top: 0;
-        right: -300px;
-        height: 100vh;
-        width: 250px;
-        background-color: #313131;
-        box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
-        padding: 80px 0 0 10px;
-        transition: 0.3s ease;
-
-        li {
-            margin-bottom: 30px;
-            margin-left: 20px;
-        }
-
-        #bag {
-            display: none;
-        }
-
-        #close {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 30px;
-            color: #adaaaa;
-            cursor: pointer;
-
-            &:hover {
-                color: #bfb6f0;
-            }
-        }
-    }
-
-    #navbar.active {
-        right: 0;
-    }
-
     #details {
         display: flex;
         flex-direction: column;
@@ -278,9 +164,11 @@ footer {
             padding-top: 30px;
             align-items: center;
         }
+
         input {
             margin: 0px 0 5px 0;
         }
+
         span {
             text-align: center;
         }
@@ -288,57 +176,6 @@ footer {
 }
 
 @media screen and (width >=745px) and (width <=1440px) {
-    #mobile {
-
-        i {
-            font-size: 25px;
-            padding-left: 20px;
-            justify-content: center;
-        }
-    }
-
-    #navbar {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        position: fixed;
-        top: 0;
-        right: -300px;
-        height: 100vh;
-        width: 250px;
-        background-color: #313131;
-        box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
-        padding: 80px 0 0 10px;
-        transition: 0.3s ease;
-
-        li {
-            margin-bottom: 30px;
-            margin-left: 20px;
-        }
-
-        #bag {
-            display: none;
-        }
-
-        #close {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 30px;
-            color: #adaaaa;
-            cursor: pointer;
-
-            &:hover {
-                color: #bfb6f0;
-            }
-        }
-    }
-
-    #navbar.active {
-        right: 0;
-    }
-
     #details {
         display: flex;
         flex-direction: column;
@@ -354,9 +191,11 @@ footer {
             padding-top: 30px;
             align-items: center;
         }
+
         input {
             margin: 0px 0 5px 0;
         }
+
         span {
             text-align: center;
         }
@@ -364,22 +203,5 @@ footer {
 }
 
 @media screen and (width >=1441px) {
-    #mobile {
-        display: none;
-        align-items: center;
-    }
-
-    #navbar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        #close {
-            display: none;
-        }
-    }
-
-    li {
-        margin: 0 20px;
-    }
+    
 }

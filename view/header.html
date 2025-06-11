@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #header {
+            background-color: rgb(30, 30, 30);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 80px;
+            box-shadow: 0 5px 15px rgba(241, 240, 240, 0.1);
+            z-index: 999;
+            position: sticky;
+            top: 0;
+            left: 0;
+
+            img {
+                width: 60px;
+                height: 60px;
+                border-radius: 50px;
+                background-color: #464343;
+                cursor: pointer;
+            }
+
+            a {
+                text-decoration: none;
+                color: #bfb6f0;
+                font-size: 30px;
+                font-weight: 500;
+            }
+
+            #navbar {
+                li {
+                    list-style: none;
+
+                    a {
+                        color: #adaaaa;
+                        font-size: 20px;
+                        transition: 0.3s ease;
+                    }
+
+                    a:hover {
+                        color: #313131;
+                    }
+                }
+
+                #signed-as p {
+                    color: #adaaaa;
+                    font-size: 15px;
+                    font-weight: 500;
+                    padding-top: 1rem;
+                }
+            }
+        }
+
+        @media screen and (width <=425px) {
+            #mobile {
+
+                i {
+                    font-size: 25px;
+                    padding-left: 10px;
+                    justify-content: center;
+                }
+            }
+
+            #navbar {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                position: fixed;
+                top: 0;
+                right: -300px;
+                height: 100vh;
+                width: 250px;
+                background-color: #313131;
+                box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+                padding: 80px 0 0 10px;
+                transition: 0.3s ease;
+
+                li {
+                    margin-bottom: 30px;
+                    margin-left: 20px;
+                }
+
+                #bag {
+                    display: none;
+                }
+
+                #close {
+                    position: absolute;
+                    top: 20px;
+                    left: 20px;
+                    font-size: 30px;
+                    color: #adaaaa;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: #bfb6f0;
+                    }
+                }
+            }
+
+            #navbar.active {
+                right: 0;
+            }
+        }
+
+        @media screen and (width >=426px) and (width <=1079px) {
+            #mobile {
+
+                i {
+                    font-size: 25px;
+                    padding-left: 20px;
+                    justify-content: center;
+                }
+            }
+
+            #navbar {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                position: fixed;
+                top: 0;
+                right: -300px;
+                height: 100vh;
+                width: 250px;
+                background-color: #313131;
+                box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+                padding: 80px 0 0 10px;
+                transition: 0.3s ease;
+
+                li {
+                    margin-bottom: 30px;
+                    margin-left: 20px;
+                }
+
+                #bag {
+                    display: none;
+                }
+
+                #close {
+                    position: absolute;
+                    top: 20px;
+                    left: 20px;
+                    font-size: 30px;
+                    color: #adaaaa;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: #bfb6f0;
+                    }
+                }
+            }
+
+            #navbar.active {
+                right: 0;
+            }
+        }
+
+        @media screen and (width >=1080px) {
+            #mobile {
+                display: none;
+                align-items: center;
+            }
+
+            #navbar {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                #close {
+                    display: none;
+                }
+            }
+
+            li {
+                margin: 0 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section id="header">
+        <a href=""><img src="assets/images/logos.png" class="logo" alt=""> Website</a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="shop.php">Shop</a></li>
+
+                <?php if (isset($_SESSION['name'])) {
+                    if (strtolower($_SESSION['admin']) === "yes") {
+                ?>
+                <li><a href="adminDashboard.php">Admin</a></li>
+                <?php } ?>
+                <li id="signed-as">
+                    <p>Signed In as:
+                        <?= $_SESSION['name']?>
+                    </p>
+                </li>
+                <li><a href="Logout.php"><i class="fa-solid fa-right-from-bracket"></i>Sign Out</a></li>
+                <?php } else { ?>
+                <li><a href="Login.php"><i class="fa-solid fa-right-to-bracket"></i>Sign In</a></li>
+                <?php } ?>
+
+                <li id="bag"><a href="#"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                <a href="" id="close"><i class="fa-solid fa-xmark"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
+        </div>
+    </section>
+</body>
+
+</html>

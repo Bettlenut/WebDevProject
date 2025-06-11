@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,23 +17,7 @@
 </head>
 
 <body class="bg-dark text-light">
-    <section id="header">
-        <a href=""><img src="assets/images/logos.png" class="logo" alt=""> Website</a>
-        <div>
-            <ul id="navbar">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.php">Shop</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="Login.php">Login</a></li>
-                <li id="bag"><a href="#"><i class="fa-solid fa-bag-shopping"></i></a></li>
-                <a href="" id="close"><i class="fa-solid fa-xmark"></i></a>
-            </ul>
-        </div>
-        <div id="mobile">
-            <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
-            <i id="bar" class="fa-solid fa-bars"></i>
-        </div>
-    </section>
+    <?php include("./view/header.html"); ?>
 
     <section id="hero">
         <div class="container py-6">
@@ -220,38 +208,7 @@
         </div>
     </section>
 
-    <footer class="section-p1">
-        <div class="item">
-            <div class="col">
-                <h4>Contact</h4>
-                <p><strong>Address: </strong> 123 Street, Sample City, Country</p>
-                <p><strong>Phone: </strong> +63 987 654 3211</p>
-                <p><strong>Hours: </strong> 10:00 - 18:00, Mon - Sat</p>
-                <div class="socmed">
-                    <h4>Follow Us:</h4>
-                    <div class="icon">
-                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://x.com/"><i class="fab fa-x-twitter"></i></a>
-                        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-                        <a href="https://www.pinterest.com/"><i class="fab fa-pinterest-p"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col apps">
-                <h4>Install Our App</h4>
-                <p>From App Store or Google Play</p>
-                <div class="row-foot">
-                    <a href="https://www.apple.com/ph/app-store/"><img src="assets/images/pay/AppStore.png" alt=""></a>
-                    <a href="https://play.google.com/store/games?hl=en&pli=1"><img src="assets/images/pay/PlayStore.png"
-                            alt=""></a>
-                </div>
-                <p>Secured Payement Gateways</p>
-                <img src="assets/images/pay/pay.png" alt="">
-            </div>
-        </div>
-        <p>©2025, Miku - Web Development NCIII Project</p>
-    </footer>
+    <?php include("./view/footer.html"); ?>
 
 
     <script src="script/index.js"></script>
