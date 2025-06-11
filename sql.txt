@@ -1,0 +1,25 @@
+CREATE DATABASE IF NOT EXISTS db_webdev;
+
+USE db_webdev;
+
+CREATE TABLE IF NOT EXISTS tbl_accounts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    contactnumber VARCHAR(20),
+    address TEXT,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255),
+    admin_privileges ENUM('yes', 'no') DEFAULT 'no',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS tbl_products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    productName VARCHAR(100) NOT NULL,
+    productDescription TEXT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    quantity INT NOT NULL,
+    productImage VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
