@@ -33,6 +33,7 @@ if (isset($_POST['Save'])) {
             WHERE id = $id";
 
     if (mysqli_query($con, $sql)) {
+        header("Location: http://localhost/webdevproject/adminDashboard.php");
         echo "<div class='alert alert-success'>Product updated successfully!</div>";
     } else {
         echo "<div class='alert alert-danger'>Error updating record: " . mysqli_error($con) . "</div>";

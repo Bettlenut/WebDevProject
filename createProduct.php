@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pName = $_POST["pName"];
     $pDesc = $_POST["pDesc"];
@@ -26,14 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         VALUES ('$pName', '$pDesc', '$price', '$quantity', '$ImgDir')";
 
     if ($con->query($sql) === TRUE) {
-        echo "New record created successfully";
         move_uploaded_file($tempImage, $uploadDir . $image);
+        header("Location: http://localhost/webdevproject/adminDashboard.php");
     } else {
         echo "Error: " . $sql . "<br>" . $con->error;
     }
-    //header("Location: http://localhost/webdevproject/login.php");
+    
 
-    // Close connection
     $con->close();
 }
 ?>
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="container" id="addProduct">
         <h1 class="form-title">Add Products</h1>
-        <form method="post" action="admin.php" enctype="multipart/form-data">
+        <form method="post" action="createProduct.php" enctype="multipart/form-data">
             <div class="input-group">
                 <input type="text" name="pName" id="pName" placeholder="Product Name" required>
                 <label for="contactNumber">Product Name</label>
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="file" name="image" id="image" required>
             <label for="image">Product Image</label>
             
-            <input type="submit" class="btns" value="Add" name="signUp">
+            <input type="submit" class="btns" value="Add">
         </form>
     </div>
 

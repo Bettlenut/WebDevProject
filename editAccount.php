@@ -24,7 +24,7 @@ if (isset($_POST['Save'])) {
             WHERE id = $id";
 
     if (mysqli_query($con, $sql)) {
-        echo "Record updated successfully";
+        header("Location: http://localhost/webdevproject/adminDashboard.php");
     } else {
         echo "Error updating record: " . mysqli_error($con);
     }
