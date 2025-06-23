@@ -45,7 +45,7 @@ $result = $con->query($sql);
                         <p><?= $row['productDescription'] ?></p>
                         <h5>₱<?= $row['price'] ?></h5>
                     </a>
-                    <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
+                    <a href="#" ><i class="fa-solid fa-cart-shopping cart"></i></a>
                 </div>
             <?php
             }
