@@ -23,3 +23,20 @@ CREATE TABLE IF NOT EXISTS tbl_products (
     productImage VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+INSERT INTO tbl_accounts (
+    firstname,
+    lastname,
+    contactnumber,
+    address,
+    email,
+    password,
+    admin_privileges
+) VALUES (
+    'Admin',
+    'User',
+    '09171234567',
+    '123 Admin St, Admin City',
+    'admin@gmail.com',
+    '$2y$10$Ad3hv5wXF4xKghkpYq8yFunA.nVqm.n2ycCSwzNwnKlYumhj.EHD6,
+    'yes'
+);
