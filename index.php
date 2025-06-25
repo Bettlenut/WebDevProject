@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+$con = mysqli_connect("localhost", "batch1", "batch1", "db_webdev", "3306");
+
+$sql = "SELECT * FROM `tbl_products`";
+
+$result = $con->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +14,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="stylesheet/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -76,136 +82,25 @@ session_start();
 
     <section id="features" class="margin-side">
         <h2>Featured Deals!</h2>
-        <div id="feature-container">
-            <div class="feature-item">
-                <img src="assets/images/hero-bg.jpg" alt="">
-                <h3>Feature</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua.</p>
-                <div class="star">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+        <section id="product" class="margin-side">
+        <div id="product-container">
+            <?php
+            while ($row = $result->fetch_assoc()) {
+            ?>
+                <div class="product-item">
+                    <a href="product.php?id=<?= $row['id']; ?>" id="product-link">
+                        <img src="<?= $row['productImage'] ?>" alt="">
+                        <h3><?= $row['productName'] ?></h3>
+                        <p><?= $row['productDescription'] ?></p>
+                        <h5>$<?= $row['price'] ?></h5>
+                    </a>
+                    <a href="#" ><i class="fa-solid fa-cart-shopping cart"></i></a>
                 </div>
-                <h5>$100</h5>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="feature-item">
-                <img src="assets/images/hero-bg.jpg" alt="">
-                <h3>Feature</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua.</p>
-                <div class="star">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                </div>
-                <h5>$100</h5>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="feature-item">
-                <img src="assets/images/hero-bg.jpg" alt="">
-                <h3>Feature</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua.</p>
-                <div class="star">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                </div>
-                <h5>$100</h5>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="feature-item">
-                <img src="assets/images/hero-bg.jpg" alt="">
-                <h3>Feature</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua.</p>
-                <div class="star">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                </div>
-                <h5>$100</h5>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="feature-item">
-                <img src="assets/images/hero-bg.jpg" alt="">
-                <h3>Feature</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua.</p>
-                <div class="star">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                </div>
-                <h5>$100</h5>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="feature-item">
-                <img src="assets/images/hero-bg.jpg" alt="">
-                <h3>Feature</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua.</p>
-                <div class="star">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                </div>
-                <h5>$100</h5>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="feature-item">
-                <img src="assets/images/hero-bg.jpg" alt="">
-                <h3>Feature</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua.</p>
-                <div class="star">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                </div>
-                <h5>$100</h5>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
-            <div class="feature-item">
-                <img src="assets/images/hero-bg.jpg" alt="">
-                <h3>Feature</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua.</p>
-                <div class="star">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                </div>
-                <h5>$100</h5>
-                <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
+            <?php
+            }
+            ?>
         </div>
+    </section>
     </section>
 
     <?php include("./view/footer.html"); ?>

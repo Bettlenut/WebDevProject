@@ -43,7 +43,7 @@ $result = $con->query($sql);
                         <img src="<?= $row['productImage'] ?>" alt="">
                         <h3><?= $row['productName'] ?></h3>
                         <p><?= $row['productDescription'] ?></p>
-                        <h5>₱<?= $row['price'] ?></h5>
+                        <h5>$<?= $row['price'] ?></h5>
                     </a>
                     <a href="#" ><i class="fa-solid fa-cart-shopping cart"></i></a>
                 </div>

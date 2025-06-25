@@ -45,7 +45,7 @@ $result->fetch();
         <div class="prodDetails">
             <h2>Product Details</h2>
             <h4><?php echo htmlspecialchars($name); ?></h4>
-            <h2>₱<?php echo number_format($price, 2); ?></h6>
+            <h2>$<?php echo number_format($price, 2); ?></h6>
             <h6>Available Stocks: <?php echo ($quantity); ?></h2>
             <input type="number" value="1" min="1" max="<?php echo $quantity; ?>">
             <button class="btns">Add to Cart</button>
