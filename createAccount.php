@@ -12,17 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $password . "system";
     $cipher = password_hash($password, PASSWORD_DEFAULT);
 
-    // Database connection
-    $con = mysqli_connect("localhost", "batch1", "batch1", "db_webdev", "3306");
+    include("./database.php");
 
-    // Check connection
-    if ($con->connect_error) {
-        echo "Error: " . $con->connect_error;
-    } else {
-        echo "Connected successfully";
-    }
-
-    // Insert query
     $sql = "INSERT INTO `tbl_accounts`(`firstname`, `lastname`, `contactnumber`, `address`, `email`, `password`) VALUES ('$fName', '$lName', '$contactNumber', '$address', '$email', '$cipher')";
 
     if ($con->query($sql) === TRUE) {
@@ -113,7 +104,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             document.getElementById("message").style.display = "none";
         }
         input.onkeyup = function() {
-            // Validate lowercase letters
             var lowerCaseLetters = /[a-z]/g;
             if (input.value.match(lowerCaseLetters)) {
                 letter.classList.remove("invalid");
@@ -123,7 +113,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 letter.classList.add("invalid");
             }
 
-            // Validate capital letters
             var upperCaseLetters = /[A-Z]/g;
             if (input.value.match(upperCaseLetters)) {
                 capital.classList.remove("invalid");
@@ -133,7 +122,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 capital.classList.add("invalid");
             }
 
-            // Validate numbers
             var numbers = /[0-9]/g;
             if (input.value.match(numbers)) {
                 number.classList.remove("invalid");

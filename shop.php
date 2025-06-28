@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$con = mysqli_connect("localhost", "batch1", "batch1", "db_webdev", "3306");
+include("./database.php");
 
 $sql = "SELECT * FROM `tbl_products`";
 
@@ -45,7 +45,7 @@ $result = $con->query($sql);
                         <p><?= $row['productDescription'] ?></p>
                         <h5>$<?= $row['price'] ?></h5>
                     </a>
-                    <a href="#" ><i class="fa-solid fa-cart-shopping cart"></i></a>
+                    <a href="product.php?id=<?= $row['id']; ?>" ><i class="fa-solid fa-cart-shopping cart"></i></a>
                 </div>
             <?php
             }

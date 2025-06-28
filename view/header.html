@@ -196,6 +196,7 @@
                 <li><a href="shop.php">Shop</a></li>
 
                 <?php if (isset($_SESSION['name'])) {
+                    ?><li><a href="cart.php">Cart</a></li><?php
                     if (strtolower($_SESSION['admin']) === "yes") {
                 ?>
                 <li><a href="adminDashboard.php">Admin</a></li>

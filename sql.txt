@@ -23,6 +23,21 @@ CREATE TABLE IF NOT EXISTS tbl_products (
     productImage VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS tbl_cart (
+    cart_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_cart_product
+        FOREIGN KEY (product_id) REFERENCES tbl_products(id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_cart_user
+        FOREIGN KEY (user_id) REFERENCES tbl_accounts(id)
+        ON DELETE CASCADE
+);
+
 INSERT INTO tbl_accounts (
     firstname,
     lastname,
@@ -37,6 +52,6 @@ INSERT INTO tbl_accounts (
     '09171234567',
     '123 Admin St, Admin City',
     'admin@gmail.com',
-    '$2y$10$Ad3hv5wXF4xKghkpYq8yFunA.nVqm.n2ycCSwzNwnKlYumhj.EHD6,
+    '$2y$10$Ad3hv5wXF4xKghkpYq8yFunA.nVqm.n2ycCSwzNwnKlYumhj.EHD6',
     'yes'
 );

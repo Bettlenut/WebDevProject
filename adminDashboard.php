@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$con = mysqli_connect("localhost", "batch1", "batch1", "db_webdev", "3306");
+    include("./database.php");
 
 if (!$con) {
     die("Connection failed: " . mysqli_connect_error());
@@ -57,7 +57,7 @@ $productsResult = $con->query($productsQuery);
                         <td style="white-space: nowrap; width: 1%;">
                             <div class="d-flex gap-1">
                                 <a href='editAccount.php?id=<?= $row['id'] ?>' class='btn btn-primary btn-sm'>Edit</a>
-                                <a href='deleteAccount.php?id=<?= $row['id'] ?>' class='btn btn-danger btn-sm' onclick="return confirm('Are you sure?')">Delete</a>
+                                <a href='deleteAccount.php?id=<?= $row['id'] ?>' class='btn btn-danger btn-sm' onclick="return confirm('Are you sure you want to Delete this account?')">Delete</a>
                             </div>
                         </td>
                     </tr>
@@ -89,7 +89,7 @@ $productsResult = $con->query($productsQuery);
                         <td style="white-space: nowrap; width: 1%;">
                             <div class="d-flex gap-1">
                                 <a href='editProduct.php?id=<?= $product['id'] ?>' class='btn btn-primary btn-sm'>Edit</a>
-                                <a href='deleteProduct.php?id=<?= $product['id'] ?>' class='btn btn-danger btn-sm' onclick="return confirm('Delete this product?')">Delete</a>
+                                <a href='deleteProduct.php?id=<?= $product['id'] ?>' class='btn btn-danger btn-sm' onclick="return confirm('Are you sure you want to Delete this product?')">Delete</a>
                             </div>
                         </td>
                     </tr>

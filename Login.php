@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = $_POST["password"];
   $password = $password . "system";
 
-  $con = mysqli_connect("localhost", "batch1", "batch1", "db_webdev", "3306");
+  include("./database.php");
 
   $sql = "SELECT * FROM `tbl_accounts` WHERE `email` = '$email'";
 

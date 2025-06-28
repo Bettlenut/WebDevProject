@@ -12,7 +12,7 @@ if (isset($_POST['Save'])) {
     $email = $_POST['email'];
     $adminPrivileges = $_POST['adminPrivileges'];
 
-    $con = mysqli_connect("localhost", "batch1", "batch1", "db_webdev", "3306");
+    include("./database.php");
 
     $sql = "UPDATE tbl_accounts SET 
                 firstname = '$fName',
@@ -52,7 +52,7 @@ if (isset($_POST['Save'])) {
     <div class="container" id="signup">
         <h1 class="form-title">Edit</h1>
         <?php
-        $con = mysqli_connect("localhost", "batch1", "batch1", "db_webdev", "3306");
+        include("./database.php");
 
         $sql = "SELECT * FROM `tbl_accounts` WHERE id = $id LIMIT 1";
 

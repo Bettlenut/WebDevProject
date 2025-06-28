@@ -1,6 +1,6 @@
 <?php
 session_start();
-$con = mysqli_connect("localhost", "batch1", "batch1", "db_webdev", "3306");
+include("./database.php");
 
 $id = $_GET['id'];
 
@@ -16,7 +16,6 @@ if (isset($_POST['Save'])) {
     $uploadDir = "assets/images/products/";
     $ImgDir = $uploadDir . basename($image);
 
-    // Upload image only if file is selected
     if (!empty($image)) {
         move_uploaded_file($tempImage, $ImgDir);
         $imageUpdate = ", productImage = '$ImgDir'";
@@ -40,7 +39,6 @@ if (isset($_POST['Save'])) {
     }
 }
 
-// Get product data
 $sql = "SELECT * FROM tbl_products WHERE id = $id LIMIT 1";
 $result = $con->query($sql);
 $row = $result->fetch_assoc();

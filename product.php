@@ -1,6 +1,6 @@
 <?php
 session_start();
-$con = new mysqli("localhost", "batch1", "batch1", "db_webdev", 3306);
+include("./database.php");
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     die("Invalid product ID.");
@@ -46,14 +46,20 @@ $result->fetch();
             <h2>Product Details</h2>
             <h4><?php echo htmlspecialchars($name); ?></h4>
             <h2>$<?php echo number_format($price, 2); ?></h6>
-            <h6>Available Stocks: <?php echo ($quantity); ?></h2>
-            <input type="number" value="1" min="1" max="<?php echo $quantity; ?>">
-            <button class="btns">Add to Cart</button>
+                <h6>Available Stocks: <?php echo ($quantity); ?>
+            </h2>
+            <form action="cart.php" method="post">
+                <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                <input type="number" name="quantity" value="1" min="1" max="<?php echo $quantity; ?>">
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
             <h4>Product Description:</h4>
             <span><?php echo nl2br(htmlspecialchars($description)); ?></span>
         </div>
     </section>
-    <a href="shop.php"><center><button class="btns" id="btns1" style="margin-bottom: 30px;">Go Back</button></center></a>
+    <a href="shop.php">
+        <center><button class="btns" id="btns1" style="margin-bottom: 30px;">Go Back</button></center>
+    </a>
 
     <?php include("./view/footer.html"); ?>
 

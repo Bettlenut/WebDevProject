@@ -4,7 +4,7 @@ session_start();
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $con = mysqli_connect("localhost", "batch1", "batch1", "db_webdev", "3306");
+    include("./database.php");
 
     if (!$con) {
         die("Connection failed: " . mysqli_connect_error());
